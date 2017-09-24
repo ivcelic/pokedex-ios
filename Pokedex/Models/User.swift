@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 import Unbox
 
 class User: Unboxable {
@@ -16,7 +15,7 @@ class User: Unboxable {
     var email: String = ""
     var username: String = ""
     var authToken: String = ""
-    var attributes = [String : String]()
+    private var attributes = [String : String]()
     
     required init(unboxer: Unboxer) throws {
         self.userId = try unboxer.unbox(key: "id")

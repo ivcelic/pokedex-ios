@@ -13,12 +13,14 @@
 		042489F81F7695CE00053F25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 042489F71F7695CE00053F25 /* Assets.xcassets */; };
 		04248A061F7695CE00053F25 /* PokedexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04248A051F7695CE00053F25 /* PokedexTests.swift */; };
 		04248A111F7695CE00053F25 /* PokedexUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04248A101F7695CE00053F25 /* PokedexUITests.swift */; };
+		04A9753D1F784D9200C06998 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A9753C1F784D9200C06998 /* Pokemon.swift */; };
 		04AB22121F76AF5B0027E1CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04AB22111F76AF5B0027E1CF /* Main.storyboard */; };
 		04AB22141F76AF630027E1CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04AB22131F76AF630027E1CF /* LaunchScreen.storyboard */; };
 		04AB221A1F76B48E0027E1CF /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AB22191F76B48E0027E1CF /* AuthenticationService.swift */; };
 		04AB221E1F76B89E0027E1CF /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AB221D1F76B89E0027E1CF /* Util.swift */; };
 		04AB22201F76C5ED0027E1CF /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AB221F1F76C5ED0027E1CF /* BaseService.swift */; };
 		04AB22221F77C4920027E1CF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AB22211F77C4920027E1CF /* User.swift */; };
+		04AB22241F784AFB0027E1CF /* PokemonService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AB22231F784AFB0027E1CF /* PokemonService.swift */; };
 		2A9A81F0E9FB52E77D827239 /* Pods_Pokedex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B28E2A8EAF474CB1DCADE427 /* Pods_Pokedex.framework */; };
 		3413B52B12A21BFF9A15BDD3 /* Pods_PokedexUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F780AEE72E9074E6BE3EC71A /* Pods_PokedexUITests.framework */; };
 		5BEC10674E00FF230C366ED1 /* Pods_PokedexTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB08FF03A7009352E87CABBD /* Pods_PokedexTests.framework */; };
@@ -54,12 +56,14 @@
 		04248A0C1F7695CE00053F25 /* PokedexUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokedexUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04248A101F7695CE00053F25 /* PokedexUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexUITests.swift; sourceTree = "<group>"; };
 		04248A121F7695CE00053F25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04A9753C1F784D9200C06998 /* Pokemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		04AB22111F76AF5B0027E1CF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		04AB22131F76AF630027E1CF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04AB22191F76B48E0027E1CF /* AuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		04AB221D1F76B89E0027E1CF /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		04AB221F1F76C5ED0027E1CF /* BaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
 		04AB22211F77C4920027E1CF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		04AB22231F784AFB0027E1CF /* PokemonService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonService.swift; sourceTree = "<group>"; };
 		122C9A102FB0C247D7512CD8 /* Pods-Pokedex.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokedex.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pokedex/Pods-Pokedex.release.xcconfig"; sourceTree = "<group>"; };
 		21CCBB64084EAD4BF9CE2634 /* Pods-Pokedex.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pokedex.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pokedex/Pods-Pokedex.debug.xcconfig"; sourceTree = "<group>"; };
 		3D51665A53FC7BD50AEAF351 /* Pods-PokedexTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokedexTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PokedexTests/Pods-PokedexTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 			children = (
 				04AB22191F76B48E0027E1CF /* AuthenticationService.swift */,
 				04AB221F1F76C5ED0027E1CF /* BaseService.swift */,
+				04AB22231F784AFB0027E1CF /* PokemonService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -194,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				04AB22211F77C4920027E1CF /* User.swift */,
+				04A9753C1F784D9200C06998 /* Pokemon.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -541,9 +547,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				042489F31F7695CE00053F25 /* DetailViewController.swift in Sources */,
+				04AB22241F784AFB0027E1CF /* PokemonService.swift in Sources */,
 				04AB221A1F76B48E0027E1CF /* AuthenticationService.swift in Sources */,
 				04AB22201F76C5ED0027E1CF /* BaseService.swift in Sources */,
 				04AB221E1F76B89E0027E1CF /* Util.swift in Sources */,
+				04A9753D1F784D9200C06998 /* Pokemon.swift in Sources */,
 				042489F11F7695CE00053F25 /* MasterViewController.swift in Sources */,
 				042489EF1F7695CE00053F25 /* AppDelegate.swift in Sources */,
 				04AB22221F77C4920027E1CF /* User.swift in Sources */,

@@ -39,7 +39,6 @@ class AuthenticationService: BaseService {
                                 let user: User = try unbox(dictionary: data as! UnboxableDictionary, atKey: "data")
                                 success(user)
                             } else {
-                                //TODO: get error response
                                 failure(BaseService.kAPIErrorMessage)
                             }
                         } catch {
@@ -72,7 +71,6 @@ class AuthenticationService: BaseService {
                                 self.setUserCredentials(email: user.email,authToken: user.authToken)
                                 success(user)
                             } else {
-                                //TODO: get error response
                                 failure(BaseService.kAPIErrorMessage)
                             }
                         } catch {
@@ -99,7 +97,6 @@ class AuthenticationService: BaseService {
                                 print(data)
                                 success()
                             } else {
-                                //TODO: get error response
                                 print(data)
                                 failure(BaseService.kAPIErrorMessage)
                             }
