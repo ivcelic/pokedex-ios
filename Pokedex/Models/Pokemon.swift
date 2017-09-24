@@ -18,17 +18,19 @@ class Pokemon: Unboxable {
     var weight: Int = -1
     var gender: String = ""
     var description: String = ""
+    var imageUrl: String = ""
     private var attributes = [String : AnyObject]()
     
     required init(unboxer: Unboxer) throws {
         self.pokemonId = try unboxer.unbox(key: "id")
-        self.type = try unboxer.unbox(key: "type")
+        self.type = try unboxer.unbox(key: "type") 
         self.attributes = try unboxer.unbox(key: "attributes")
-        self.name = attributes["name"] as! String
-        self.height = attributes["height"] as! Int
-        self.weight = attributes["weight"] as! Int
-        self.gender = attributes["gender"] as! String
-        self.description = attributes["description"] as! String
+        self.name = attributes["name"] as? String ?? ""
+        self.height = attributes["height"] as? Int ?? -1
+        self.weight = attributes["weight"] as? Int ?? -1
+        self.gender = attributes["gender"] as? String ?? ""
+        self.description = attributes["description"] as? String ?? ""
+        self.imageUrl = attributes["image-url"] as? String ?? ""
     }
 }
 

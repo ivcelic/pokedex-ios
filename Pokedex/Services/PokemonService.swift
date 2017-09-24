@@ -46,7 +46,40 @@ class PokemonService: BaseService {
             }
         }
     }
-    
+
+    func saveNewPokemon(name: String, height: Int, weight: Int, gender: Int, type: String, description: String, imageUrl: String, success: @escaping ((_ pokemon: Pokemon?) -> Void), failure:@escaping ((_ errorMessage: String) -> Void)){
+        let header = AuthenticationService.initAuthHeader()
+        var dict: [String: AnyObject] = [:]
+        var params: [String: AnyObject] = [:]
+        let attributes = [ "name":name, "height": height, "weight":weight, "gender-id":gender, "type":type, "description":description, "image-url":imageUrl] as [String : Any]
+        params["attributes"] = attributes as AnyObject
+        dict["data"] = params as AnyObject
+        let baseUrl = Util.readFromPlist(key:kBaseAPIURL)
+        if baseUrl != nil {
+            let url: URLConvertible = baseUrl! + kPokemonsAPIURL
+            Alamofire.request(url, method: .post, parameters: dict, encoding: JSONEncoding.default, headers: header)
+                .responseJSON { response in
+                    switch response.result {
+                    case .failure(let error):
+                        failure(error.localizedDescription)
+                    case .success(let data):
+                        do{
+                            if(response.response?.statusCode == 201) {
+                                let pokemon: Pokemon = try unbox(dictionary: data as! UnboxableDictionary, atKey: "data")
+                                success(pokemon)
+                                print(data)
+                            } else {
+                                failure(BaseService.kAPIErrorMessage)
+                                print(data)
+                            }
+                        } catch {
+                            failure(BaseService.kDefaultErrorMessage)
+                            print(data)
+                        }
+                    }
+            }
+        }
+    }
     
 
 }
