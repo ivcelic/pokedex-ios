@@ -67,19 +67,40 @@ class PokemonService: BaseService {
                             if(response.response?.statusCode == 201) {
                                 let pokemon: Pokemon = try unbox(dictionary: data as! UnboxableDictionary, atKey: "data")
                                 success(pokemon)
-                                print(data)
                             } else {
                                 failure(BaseService.kAPIErrorMessage)
-                                print(data)
                             }
                         } catch {
                             failure(BaseService.kDefaultErrorMessage)
-                            print(data)
                         }
                     }
             }
         }
     }
     
+    func getCommentsForPokemonId(id: String, success: @escaping ((_ comments: NSArray) -> Void), failure:@escaping ((_ errorMessage: String) -> Void)){
+        let header = AuthenticationService.initAuthHeader()
+        let baseUrl = Util.readFromPlist(key:kBaseAPIURL)
+        if baseUrl != nil {
+            let url: URLConvertible = baseUrl! + kPokemonsAPIURL + "/" + id + "/comments"
+            Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: header)
+                .responseJSON { response in
+                    switch response.result {
+                    case .failure(let error):
+                        failure(error.localizedDescription)
+                    case .success(let data):
+                        if(response.response?.statusCode == 200) {
+                            let parsedData = data as! NSDictionary
+                            let commentsArray = parsedData.object(forKey: "data") as! NSArray
+                            print(data)
+                            success(commentsArray)
+                        } else {
+                            failure(BaseService.kAPIErrorMessage)
+                            print(data)
+                        }
+                    }
+            }
+        }
+    }
 
 }
