@@ -13,6 +13,7 @@
 		042489F81F7695CE00053F25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 042489F71F7695CE00053F25 /* Assets.xcassets */; };
 		04248A061F7695CE00053F25 /* PokedexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04248A051F7695CE00053F25 /* PokedexTests.swift */; };
 		04248A111F7695CE00053F25 /* PokedexUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04248A101F7695CE00053F25 /* PokedexUITests.swift */; };
+		049B10221F79888A00061AB1 /* AddPokemonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049B10211F79888A00061AB1 /* AddPokemonViewController.swift */; };
 		04A24D121F790058004B1602 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A24D111F790058004B1602 /* AuthenticationViewController.swift */; };
 		04A9753D1F784D9200C06998 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A9753C1F784D9200C06998 /* Pokemon.swift */; };
 		04A9756E1F78858C00C06998 /* add-image-button.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 04A9756A1F78858C00C06998 /* add-image-button.pdf */; };
@@ -67,6 +68,7 @@
 		04248A0C1F7695CE00053F25 /* PokedexUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokedexUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04248A101F7695CE00053F25 /* PokedexUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexUITests.swift; sourceTree = "<group>"; };
 		04248A121F7695CE00053F25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		049B10211F79888A00061AB1 /* AddPokemonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPokemonViewController.swift; sourceTree = "<group>"; };
 		04A24D111F790058004B1602 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		04A9753C1F784D9200C06998 /* Pokemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		04A9756A1F78858C00C06998 /* add-image-button.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "add-image-button.pdf"; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				04A24D111F790058004B1602 /* AuthenticationViewController.swift */,
 				042489F01F7695CE00053F25 /* MasterViewController.swift */,
 				042489F21F7695CE00053F25 /* DetailViewController.swift */,
+				049B10211F79888A00061AB1 /* AddPokemonViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -601,6 +604,7 @@
 			files = (
 				042489F31F7695CE00053F25 /* DetailViewController.swift in Sources */,
 				04AB22241F784AFB0027E1CF /* PokemonService.swift in Sources */,
+				049B10221F79888A00061AB1 /* AddPokemonViewController.swift in Sources */,
 				04A24D121F790058004B1602 /* AuthenticationViewController.swift in Sources */,
 				04AB221A1F76B48E0027E1CF /* AuthenticationService.swift in Sources */,
 				04AB22201F76C5ED0027E1CF /* BaseService.swift in Sources */,
