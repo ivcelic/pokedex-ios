@@ -140,6 +140,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="esR-MH-r9C">
                                 <rect key="frame" x="250" y="207" width="54" height="54"/>
                                 <state key="normal" image="AddImageButton"/>
+                                <connections>
+                                    <action selector="addImagePressed:" destination="rXe-XD-DRh" eventType="touchUpInside" id="lzk-zp-kjx"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="POKEMON INFO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FKj-gl-VSA">
                                 <rect key="frame" x="16" y="250" width="126" height="21"/>
@@ -277,6 +280,7 @@
                     <connections>
                         <outlet property="height" destination="ZDH-8F-XqM" id="6BS-NE-Seu"/>
                         <outlet property="name" destination="lcq-24-hJx" id="dYb-PR-7Ao"/>
+                        <outlet property="pokemonImage" destination="6F1-rB-ehp" id="uOG-MD-hDk"/>
                         <outlet property="type" destination="Ims-YQ-nTK" id="2vB-fP-r32"/>
                         <outlet property="weight" destination="63d-rQ-u0e" id="zPT-Gi-J8O"/>
                     </connections>

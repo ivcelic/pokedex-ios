@@ -9,12 +9,15 @@
 import Foundation
 import UIKit
 
-class AddPokemonViewController: UIViewController {
+class AddPokemonViewController: UIViewController, UINavigationControllerDelegate,UIImagePickerControllerDelegate{
     
     @IBOutlet var name: UITextField!
     @IBOutlet var height: UITextField!
     @IBOutlet var weight: UITextField!
     @IBOutlet var type: UITextField!
+    @IBOutlet var pokemonImage: UIImageView!
+    
+    var imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +44,27 @@ class AddPokemonViewController: UIViewController {
         }
     }
     
+    @IBAction func addImagePressed(_ sender: UIButton) {
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+            imagePicker.delegate = self
+            imagePicker.sourceType = .savedPhotosAlbum;
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let fileManager = FileManager.default
+        let documentsPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
+        let imagePath = documentsPath?.appendingPathComponent(self.name.text! + ".jpg")
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.pokemonImage.image = image
+            try! UIImageJPEGRepresentation(image, 0.0)?.write(to: imagePath!)
+        }
+        
+        picker.dismiss(animated: true, completion: nil);
+    }
+    
     func returnToMainScreen() {
         self.navigationController?.popToRootViewController(animated: true)
     }
@@ -50,6 +74,7 @@ class AddPokemonViewController: UIViewController {
         let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
+        
     }
     
     
