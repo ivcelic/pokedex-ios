@@ -14,6 +14,16 @@
 		04248A061F7695CE00053F25 /* PokedexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04248A051F7695CE00053F25 /* PokedexTests.swift */; };
 		04248A111F7695CE00053F25 /* PokedexUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04248A101F7695CE00053F25 /* PokedexUITests.swift */; };
 		04A9753D1F784D9200C06998 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A9753C1F784D9200C06998 /* Pokemon.swift */; };
+		04A9756E1F78858C00C06998 /* add-image-button.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 04A9756A1F78858C00C06998 /* add-image-button.pdf */; };
+		04A9756F1F78858C00C06998 /* image-placeholder.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 04A9756B1F78858C00C06998 /* image-placeholder.pdf */; };
+		04A975701F78858C00C06998 /* pokeball.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 04A9756C1F78858C00C06998 /* pokeball.pdf */; };
+		04A975711F78858C00C06998 /* pokedex-title.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 04A9756D1F78858C00C06998 /* pokedex-title.pdf */; };
+		04A975791F78859900C06998 /* icon-add.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 04A975731F78859900C06998 /* icon-add.pdf */; };
+		04A9757A1F78859900C06998 /* icon-email.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 04A975741F78859900C06998 /* icon-email.pdf */; };
+		04A9757B1F78859900C06998 /* icon-logout.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 04A975751F78859900C06998 /* icon-logout.pdf */; };
+		04A9757C1F78859900C06998 /* icon-password-visibility.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 04A975761F78859900C06998 /* icon-password-visibility.pdf */; };
+		04A9757D1F78859900C06998 /* icon-password.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 04A975771F78859900C06998 /* icon-password.pdf */; };
+		04A9757E1F78859900C06998 /* icon-person.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 04A975781F78859900C06998 /* icon-person.pdf */; };
 		04AB22121F76AF5B0027E1CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04AB22111F76AF5B0027E1CF /* Main.storyboard */; };
 		04AB22141F76AF630027E1CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04AB22131F76AF630027E1CF /* LaunchScreen.storyboard */; };
 		04AB221A1F76B48E0027E1CF /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04AB22191F76B48E0027E1CF /* AuthenticationService.swift */; };
@@ -57,6 +67,16 @@
 		04248A101F7695CE00053F25 /* PokedexUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexUITests.swift; sourceTree = "<group>"; };
 		04248A121F7695CE00053F25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04A9753C1F784D9200C06998 /* Pokemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
+		04A9756A1F78858C00C06998 /* add-image-button.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "add-image-button.pdf"; sourceTree = "<group>"; };
+		04A9756B1F78858C00C06998 /* image-placeholder.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "image-placeholder.pdf"; sourceTree = "<group>"; };
+		04A9756C1F78858C00C06998 /* pokeball.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = pokeball.pdf; sourceTree = "<group>"; };
+		04A9756D1F78858C00C06998 /* pokedex-title.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "pokedex-title.pdf"; sourceTree = "<group>"; };
+		04A975731F78859900C06998 /* icon-add.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "icon-add.pdf"; sourceTree = "<group>"; };
+		04A975741F78859900C06998 /* icon-email.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "icon-email.pdf"; sourceTree = "<group>"; };
+		04A975751F78859900C06998 /* icon-logout.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "icon-logout.pdf"; sourceTree = "<group>"; };
+		04A975761F78859900C06998 /* icon-password-visibility.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "icon-password-visibility.pdf"; sourceTree = "<group>"; };
+		04A975771F78859900C06998 /* icon-password.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "icon-password.pdf"; sourceTree = "<group>"; };
+		04A975781F78859900C06998 /* icon-person.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "icon-person.pdf"; sourceTree = "<group>"; };
 		04AB22111F76AF5B0027E1CF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		04AB22131F76AF630027E1CF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04AB22191F76B48E0027E1CF /* AuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
@@ -173,6 +193,7 @@
 			children = (
 				04AB22131F76AF630027E1CF /* LaunchScreen.storyboard */,
 				042489F71F7695CE00053F25 /* Assets.xcassets */,
+				04A975721F78859900C06998 /* Icons */,
 				04248A291F76ABBA00053F25 /* Images */,
 			);
 			path = Resources;
@@ -207,6 +228,10 @@
 		04248A291F76ABBA00053F25 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				04A9756A1F78858C00C06998 /* add-image-button.pdf */,
+				04A9756B1F78858C00C06998 /* image-placeholder.pdf */,
+				04A9756C1F78858C00C06998 /* pokeball.pdf */,
+				04A9756D1F78858C00C06998 /* pokedex-title.pdf */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -225,6 +250,19 @@
 				042489EE1F7695CE00053F25 /* AppDelegate.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		04A975721F78859900C06998 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				04A975731F78859900C06998 /* icon-add.pdf */,
+				04A975741F78859900C06998 /* icon-email.pdf */,
+				04A975751F78859900C06998 /* icon-logout.pdf */,
+				04A975761F78859900C06998 /* icon-password-visibility.pdf */,
+				04A975771F78859900C06998 /* icon-password.pdf */,
+				04A975781F78859900C06998 /* icon-person.pdf */,
+			);
+			path = Icons;
 			sourceTree = "<group>";
 		};
 		1E6FE2B0DF0EF02179A045CE /* Frameworks */ = {
@@ -368,7 +406,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				04AB22141F76AF630027E1CF /* LaunchScreen.storyboard in Resources */,
+				04A9757B1F78859900C06998 /* icon-logout.pdf in Resources */,
+				04A975711F78858C00C06998 /* pokedex-title.pdf in Resources */,
 				042489F81F7695CE00053F25 /* Assets.xcassets in Resources */,
+				04A9757A1F78859900C06998 /* icon-email.pdf in Resources */,
+				04A9757C1F78859900C06998 /* icon-password-visibility.pdf in Resources */,
+				04A9757D1F78859900C06998 /* icon-password.pdf in Resources */,
+				04A975791F78859900C06998 /* icon-add.pdf in Resources */,
+				04A9756E1F78858C00C06998 /* add-image-button.pdf in Resources */,
+				04A9757E1F78859900C06998 /* icon-person.pdf in Resources */,
+				04A9756F1F78858C00C06998 /* image-placeholder.pdf in Resources */,
+				04A975701F78858C00C06998 /* pokeball.pdf in Resources */,
 				04AB22121F76AF5B0027E1CF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
