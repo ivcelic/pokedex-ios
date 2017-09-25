@@ -18,5 +18,6 @@ target 'Pokedex' do
   end
 
   pod 'Alamofire', '~> 4.5'
+  pod 'AlamofireImage', '~> 3.3'
   pod 'Unbox', '~> 2.5'
 end

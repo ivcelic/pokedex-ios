@@ -7,15 +7,23 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
+
+class PokemonCell: UITableViewCell {
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var pokemonImageView: UIImageView!
+}
 
 class MasterViewController: UITableViewController {
-
+    
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationBarApperance()
+        loadTableData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -25,6 +33,35 @@ class MasterViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    @IBAction func logout(_ sender: Any) {
+        AuthenticationService().signout(success: {
+        }) { (error) in
+            self.showMessage(message: error)
+        }
+    }
+    
+    func setNavigationBarApperance() {
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.backgroundColor = Util.basicBlueColor()
+        self.navigationController?.navigationItem.titleView?.tintColor = UIColor.white
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+    }
+    
+    func loadTableData() {
+        Util.showProgressDialog(view: self.view)
+        loadPokemons()
+    }
+    
+    func loadPokemons() {
+        PokemonService().getAllPokemons(success: { (pokemons) in
+            self.objects = pokemons
+            self.tableView.reloadData()
+            Util.hideProgressDialog(view: self.view)
+        }) { (error) in
+            self.showMessage(message: error)
+        }
+    }
 
     func insertNewObject(_ sender: Any) {
         objects.insert(NSDate(), at: 0)
@@ -33,7 +70,6 @@ class MasterViewController: UITableViewController {
     }
 
     // MARK: - Segues
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
@@ -47,7 +83,6 @@ class MasterViewController: UITableViewController {
     }
 
     // MARK: - Table View
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -57,10 +92,9 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-
-        let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath) as! PokemonCell
+        let pokemon = objects[indexPath.row] as! Pokemon
+        cell.nameLabel!.text = pokemon.name
         return cell
     }
 
@@ -77,7 +111,18 @@ class MasterViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 
+    
+    func showMessage(message: String) {
+        Util.hideProgressDialog(view: self.view)
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 
 }
 

@@ -38,6 +38,7 @@ class PokemonService: BaseService {
                                 success(pokemons)
                             } else {
                                 failure(BaseService.kAPIErrorMessage)
+                                print(data)
                             }
                         } catch {
                             failure(BaseService.kDefaultErrorMessage)

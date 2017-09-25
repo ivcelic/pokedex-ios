@@ -13,9 +13,11 @@ class AuthenticationViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
+    @IBOutlet var loginButton: UIButton!
     
     override func loadView() {
         super.loadView()
+        loginButton.backgroundColor = Util.basicBlueColor()
     }
     
     override func viewDidLoad() {

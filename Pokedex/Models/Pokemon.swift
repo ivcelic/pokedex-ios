@@ -32,6 +32,7 @@ class Pokemon: Unboxable {
         self.description = attributes["description"] as? String ?? ""
         self.imageUrl = attributes["image-url"] as? String ?? ""
     }
+    
 }
 
 

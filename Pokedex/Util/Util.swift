@@ -25,10 +25,14 @@ class Util: NSObject {
         return value
     }
     
+    static func basicBlueColor() -> UIColor {
+        return UIColor(red: 59.0/255.0, green: 89.0/255.0, blue: 152.0/255.0, alpha: 1.00)
+    }
+    
     static func showProgressDialog(view: UIView) {
         let superView: UIView = view
         superView.isUserInteractionEnabled = false
-        let indicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        let indicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         indicator.center = superView.center
         indicator.tag = Util.kActivityIndicatorViewTag
         indicator.isHidden = false
@@ -43,4 +47,7 @@ class Util: NSObject {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         view.viewWithTag(Util.kActivityIndicatorViewTag)?.removeFromSuperview()
     }
+    
+    
+    
 }
