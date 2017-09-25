@@ -7,8 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 class Util: NSObject {
+    
+    static let kActivityIndicatorViewTag: Int = 5
     
     static func readFromPlist(key: String) -> String? {
         guard let plist = Bundle.main.infoDictionary else {
@@ -20,5 +23,24 @@ class Util: NSObject {
         }
         
         return value
+    }
+    
+    static func showProgressDialog(view: UIView) {
+        let superView: UIView = view
+        superView.isUserInteractionEnabled = false
+        let indicator: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        indicator.center = superView.center
+        indicator.tag = Util.kActivityIndicatorViewTag
+        indicator.isHidden = false
+        superView.addSubview(indicator)
+        superView.bringSubview(toFront: indicator)
+        indicator.startAnimating()
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    static func hideProgressDialog(view: UIView) {
+        view.isUserInteractionEnabled = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        view.viewWithTag(Util.kActivityIndicatorViewTag)?.removeFromSuperview()
     }
 }
