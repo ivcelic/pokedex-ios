@@ -116,13 +116,5 @@ class MasterViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    
-    func showMessage(message: String) {
-        Util.hideProgressDialog(view: self.view)
-        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-
 }
 
