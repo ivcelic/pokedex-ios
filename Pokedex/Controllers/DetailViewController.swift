@@ -47,9 +47,22 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         Util.showProgressDialog(view: self.view)
         let id = String(pokemon.pokemonId)
         PokemonService().getCommentsForPokemonId(id: id, success: { (comments) in
-            self.pokemonComments = comments
-            self.pokemonDetailsTable.reloadData()
-            Util.hideProgressDialog(view: self.view)
+            if (comments.count == 0) {
+                Util.hideProgressDialog(view: self.view)
+                return
+            }
+            for comment in comments {
+                AuthenticationService().getUsernameForUserId(id: comment.authorId, success: { (username) in
+                    let commentWithName = Comment.init(authorId: comment.authorId, authorName: username, comment: comment.comment)
+                    self.pokemonComments.append(commentWithName)
+                    if(self.pokemonComments.count == comments.count) {
+                        self.pokemonDetailsTable.reloadData()
+                        Util.hideProgressDialog(view: self.view)
+                    }
+                }, failure: { (error) in
+                    print(error)
+                })
+            }
         }) { (error) in
             self.showMessage(message: error)
         }
@@ -99,11 +112,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCommentCell", for: indexPath) as! PokemonCommentCell
             let comment = pokemonComments[indexPath.row-3] as Comment
-            cell.author.text = comment.authorId
+            cell.author.text = comment.authorName
             cell.comment.text = comment.comment
             tableCell = cell
         }
-        
         return tableCell
     }
     

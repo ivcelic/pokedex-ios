@@ -13,7 +13,7 @@ import Unbox
 class AuthenticationService: BaseService {
     
     let kBaseAPIURL: String = "APIURL"
-    let kRegisterAPIURL: String = "/users"
+    let kUserAPIURL: String = "/users"
     let kSignInAPIURL: String = "/users/login"
     let kSignOutAPIURL: String = "/users/logout"
     
@@ -27,7 +27,7 @@ class AuthenticationService: BaseService {
         dict["data"] = params as AnyObject
         let baseUrl = Util.readFromPlist(key:kBaseAPIURL)
         if baseUrl != nil {
-            let url: URLConvertible = baseUrl! + kRegisterAPIURL
+            let url: URLConvertible = baseUrl! + kUserAPIURL
             Alamofire.request(url, method: .post, parameters: dict, encoding: JSONEncoding.default)
                 .responseJSON { response in
                     switch response.result {
@@ -74,6 +74,33 @@ class AuthenticationService: BaseService {
                                 failure(BaseService.kAPIErrorMessage)
                             }
                         } catch {
+                            failure(BaseService.kDefaultErrorMessage)
+                        }
+                    }
+            }
+        }
+    }
+    
+    func getUsernameForUserId(id: String, success: @escaping ((_ username: String) -> Void), failure:@escaping ((_ errorMessage: String) -> Void)){
+        let header = AuthenticationService.initAuthHeader()
+        let baseUrl = Util.readFromPlist(key:kBaseAPIURL)
+        if baseUrl != nil {
+            let url: URLConvertible = baseUrl! + kUserAPIURL + "/" + id
+            Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: header)
+                .responseJSON { response in
+                    switch response.result {
+                    case .failure(let error):
+                        failure(error.localizedDescription)
+                    case .success(let data):
+                        do{
+                        if(response.response?.statusCode == 200) {
+                            let user: User = try unbox(dictionary: data as! UnboxableDictionary, atKey: "data")
+                            success(user.username)
+                        } else {
+                            failure(BaseService.kAPIErrorMessage)
+                        }
+                        }
+                        catch {
                             failure(BaseService.kDefaultErrorMessage)
                         }
                     }

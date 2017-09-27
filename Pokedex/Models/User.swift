@@ -22,6 +22,8 @@ class User: Unboxable {
         self.attributes = try unboxer.unbox(key: "attributes")
         self.email = attributes["email"]!
         self.username = attributes["username"]!
-        self.authToken = attributes["auth-token"]!
+        if(attributes["auth-token"] != nil) {
+            self.authToken = attributes["auth-token"]!
+        }
     }
 }

@@ -14,7 +14,6 @@ struct Comment {
     var authorId: String = ""
     var authorName: String = ""
     var comment: String = ""
-    var attributes = [String : AnyObject]()
 }
 
 extension Comment: Unboxable {
