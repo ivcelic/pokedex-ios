@@ -24,19 +24,32 @@ class PokemonAttributesCell: UITableViewCell {
     @IBOutlet var height: UILabel!
 }
 
+class PokemonCommentCell: UITableViewCell {
+    @IBOutlet var author: UILabel!
+    @IBOutlet var comment: UILabel!
+}
+
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var pokemonDetailsTable: UITableView!
     var pokemon: Pokemon!
+    var pokemonComments: Array<Any>!
 
-    func configureView() {
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         pokemonDetailsTable.delegate = self
         pokemonDetailsTable.dataSource = self
-        configureView()
+        loadComments()
+    }
+    
+    func loadComments() {
+        let id = String(pokemon.pokemonId)
+    PokemonService().getCommentsForPokemonId(id: id, success: { (comments) in
+        self.pokemonComments = comments as! Array<Any>
+    }) { (error) in
+        print(error)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,10 +89,9 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.type.text = pokemon.type
             cell.gender.text = pokemon.gender
             tableCell = cell
-//        case >3:
-//            
         default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath) 
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCommentCell", for: indexPath) as! PokemonCommentCell
+//            cell.comment.text = pokemonComments[indexPath.row-2]
             tableCell = cell
         }
         

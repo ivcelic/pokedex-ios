@@ -129,7 +129,7 @@ extension UIImageView {
     public func setCircleMask() {
         self.layer.borderWidth = 1
         self.layer.masksToBounds = false
-        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.borderColor = UIColor.lightGray.cgColor
         self.layer.cornerRadius = self.frame.height/2
         self.clipsToBounds = true
     }
