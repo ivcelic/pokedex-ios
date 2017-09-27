@@ -30,6 +30,7 @@ class AuthenticationViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         email.delegate = self;
         password.delegate = self;
+        performSignIn(email: "irisc@gmail.com", password: "87654321")
     }
     
     override func viewWillDisappear(_ animated: Bool) {

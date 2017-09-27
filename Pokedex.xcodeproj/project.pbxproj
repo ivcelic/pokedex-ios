@@ -187,8 +187,8 @@
 		04248A241F76AB6800053F25 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				04AB22191F76B48E0027E1CF /* AuthenticationService.swift */,
 				04AB221F1F76C5ED0027E1CF /* BaseService.swift */,
+				04AB22191F76B48E0027E1CF /* AuthenticationService.swift */,
 				04AB22231F784AFB0027E1CF /* PokemonService.swift */,
 			);
 			path = Services;

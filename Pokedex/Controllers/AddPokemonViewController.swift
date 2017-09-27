@@ -45,13 +45,13 @@ class AddPokemonViewController: UIViewController, UITextFieldDelegate, UITextVie
     }
     
     @IBAction func savePokemonPressed(_ sender: UIButton) {
-        addPokemon(name: name.text! , height: height.text!, weight: weight.text!, type: type.text!, description: pokemonDescription.text!, imageUrl: imageURL)
+        addPokemon(name: name.text! , height: height.text!, weight: weight.text!, type: type.text!, description: pokemonDescription.text!, image: pokemonImage.image!)
     }
     
-    func addPokemon(name: String, height: String, weight: String, type: String, description: String, imageUrl: String) {
+    func addPokemon(name: String, height: String, weight: String, type: String, description: String, image: UIImage) {
         Util.showProgressDialog(view: self.view)
         //gender is male
-        PokemonService().saveNewPokemon(name: name, height:Int(height)!, weight:Int(weight)!, gender: 0, type: type, description: description, imageUrl: imageUrl, success: { (pokemon) in
+        PokemonService().saveNewPokemon(name: name, height:Int(height)!, weight:Int(weight)!, gender: 0, type: type, description: description, image: image, success: { (pokemon) in
             Util.hideProgressDialog(view: self.view)
             self.returnToMainScreen()
         }) { (error) in
@@ -69,17 +69,8 @@ class AddPokemonViewController: UIViewController, UITextFieldDelegate, UITextVie
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let fileManager = FileManager.default
-        let documentsPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first
-        let imagePath = documentsPath?.appendingPathComponent(self.name.text! + ".jpg")
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             self.pokemonImage.image = image
-            do {
-                try UIImageJPEGRepresentation(image, 0.0)?.write(to: imagePath!)
-                imageURL = (imagePath?.relativeString)!
-            } catch {
-                imageURL = ""
-            }
         }
         picker.dismiss(animated: true, completion: nil);
     }

@@ -27,5 +27,12 @@ class BaseService: NSObject {
         ]
         return headers
     }
+    
+    class func initStringAuthHeader() -> String {
+        let apiToken = UserDefaults.standard.string(forKey: kUserDefaultsAuthTokenKey)
+        let email = UserDefaults.standard.string(forKey: kUserDefaultsEmailKey)
+        let authorizationHeader: String = "Token token=\(apiToken ?? ""), email=\(email ?? "")"
+        return authorizationHeader
+    }
 }
 
