@@ -94,6 +94,7 @@ class MasterViewController: UITableViewController {
         let pokemon = objects[indexPath.row] as! Pokemon
         cell.nameLabel!.text = pokemon.name
         cell.tag = indexPath.row
+        cell.pokemonImageView.image = nil
         if(indexPath.row == cell.tag) {
             if(pokemon.image == nil) {
                 cell.pokemonImageView.setImageForPokemon(pokemon: pokemon)
