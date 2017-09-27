@@ -36,6 +36,9 @@ class MasterViewController: UITableViewController {
     
     @IBAction func logout(_ sender: Any) {
         AuthenticationService().signout(success: {
+            let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc: UIViewController = storyboard.instantiateViewController(withIdentifier: "AuthenticationViewController") as UIViewController
+            self.present(vc, animated: true, completion: nil)
         }) { (error) in
             self.showMessage(message: error)
         }
