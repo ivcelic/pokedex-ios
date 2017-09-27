@@ -210,8 +210,8 @@
 			children = (
 				04A24D111F790058004B1602 /* AuthenticationViewController.swift */,
 				042489F01F7695CE00053F25 /* MasterViewController.swift */,
-				042489F21F7695CE00053F25 /* DetailViewController.swift */,
 				049B10211F79888A00061AB1 /* AddPokemonViewController.swift */,
+				042489F21F7695CE00053F25 /* DetailViewController.swift */,
 				049B10271F7AA16100061AB1 /* Extensions */,
 			);
 			path = Controllers;
