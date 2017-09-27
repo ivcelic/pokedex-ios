@@ -98,7 +98,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             tableCell = cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCommentCell", for: indexPath) as! PokemonCommentCell
-            let comment = pokemonComments[indexPath.row-2] as Comment
+            let comment = pokemonComments[indexPath.row-3] as Comment
             cell.author.text = comment.authorId
             cell.comment.text = comment.comment
             tableCell = cell

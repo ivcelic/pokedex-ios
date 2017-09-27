@@ -188,28 +188,32 @@
                                             <outlet property="weight" destination="cdw-iJ-WrV" id="s3J-ck-WhZ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PokemonCommentCell" rowHeight="47" id="48F-7Y-gYg" customClass="PokemonCommentCell" customModule="Pokedex" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="455" width="320" height="47"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PokemonCommentCell" rowHeight="89" id="48F-7Y-gYg" customClass="PokemonCommentCell" customModule="Pokedex" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="455" width="320" height="89"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="48F-7Y-gYg" id="fBh-db-qFc">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="47"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Comment author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOP-rD-8nR">
-                                                    <rect key="frame" x="21" y="0.0" width="130" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOP-rD-8nR">
+                                                    <rect key="frame" x="21" y="8" width="130" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfc-7x-YvS">
-                                                    <rect key="frame" x="21" y="18" width="75" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfc-7x-YvS">
+                                                    <rect key="frame" x="21" y="36" width="63" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="qfc-7x-YvS" firstAttribute="leading" secondItem="fBh-db-qFc" secondAttribute="leadingMargin" constant="13" id="50f-c0-WtN"/>
+                                                <constraint firstItem="qfc-7x-YvS" firstAttribute="top" secondItem="nOP-rD-8nR" secondAttribute="bottom" constant="7.5" id="MBj-FL-wN3"/>
+                                                <constraint firstItem="nOP-rD-8nR" firstAttribute="leading" secondItem="fBh-db-qFc" secondAttribute="leadingMargin" constant="13" id="MNY-xJ-WRe"/>
+                                                <constraint firstItem="nOP-rD-8nR" firstAttribute="top" secondItem="fBh-db-qFc" secondAttribute="topMargin" id="xE5-zZ-Oh1"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="author" destination="nOP-rD-8nR" id="DGE-Ze-72m"/>

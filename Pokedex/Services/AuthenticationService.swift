@@ -82,7 +82,7 @@ class AuthenticationService: BaseService {
     }
     
     func signout(success:@escaping () -> (), failure: @escaping (_ errorMessage: String) -> ()) {
-        cancelAllAPIRequests()
+        AuthenticationService.cancelAllAPIRequests()
         let header = AuthenticationService.initAuthHeader()
         let baseUrl = Util.readFromPlist(key: kBaseAPIURL)
         if baseUrl != nil {
@@ -104,13 +104,6 @@ class AuthenticationService: BaseService {
                     }
             }
         }
-    }
-    
-    func cancelAllAPIRequests() {
-        let sessionManager = Alamofire.SessionManager.default
-        sessionManager.session.getTasksWithCompletionHandler { dataTasks, uploadTasks, downloadTasks in dataTasks.forEach { $0.cancel() }
-            uploadTasks.forEach { $0.cancel() }
-            downloadTasks.forEach { $0.cancel() } }
     }
     
     func setUserCredentials(email:String, authToken:String) {

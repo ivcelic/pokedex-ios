@@ -34,5 +34,11 @@ class BaseService: NSObject {
         let authorizationHeader: String = "Token token=\(apiToken ?? ""), email=\(email ?? "")"
         return authorizationHeader
     }
+    
+    class func cancelAllAPIRequests() {
+        Alamofire.SessionManager.default.session.getTasksWithCompletionHandler { dataTasks, uploadTasks, downloadTasks in dataTasks.forEach { $0.cancel() }
+            uploadTasks.forEach { $0.cancel() }
+            downloadTasks.forEach { $0.cancel() } }
+    }
 }
 

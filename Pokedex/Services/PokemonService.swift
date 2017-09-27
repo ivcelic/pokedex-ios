@@ -19,7 +19,7 @@ struct Comment {
 
 extension Comment: Unboxable {
     init(unboxer: Unboxer) throws {
-        self.comment = try unboxer.unbox(key: "attributes.content")
+        self.comment = try unboxer.unbox(keyPath: "attributes.content")
         self.authorId = try unboxer.unbox(keyPath: "relationships.author.data.id")
     }
 }
@@ -125,6 +125,7 @@ class PokemonService: BaseService {
     }
     
     func getCommentsForPokemonId(id: String, success: @escaping ((_ comments: Array<Comment>) -> Void), failure:@escaping ((_ errorMessage: String) -> Void)){
+        PokemonService.cancelAllAPIRequests()
         let header = AuthenticationService.initAuthHeader()
         let baseUrl = Util.readFromPlist(key:kBaseAPIURL)
         if baseUrl != nil {
@@ -141,7 +142,7 @@ class PokemonService: BaseService {
                             let commentsArray = parsedData.object(forKey: "data") as! NSArray
                             for comment in commentsArray {
                                 do {
-                                    let pokemonComment: Comment = try unbox(dictionary: comment as! UnboxableDictionary, atKey: "data")
+                                    let pokemonComment: Comment = try unbox(dictionary: comment as! UnboxableDictionary)
                                     pokemonComments.append(pokemonComment)
                                 } catch {
                                     failure(BaseService.kDefaultErrorMessage)
