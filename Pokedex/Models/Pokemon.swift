@@ -19,6 +19,7 @@ class Pokemon: Unboxable {
     var gender: String = ""
     var description: String = ""
     var imageUrl: String = ""
+    var image: UIImage? = nil
     private var attributes = [String : AnyObject]()
     
     required init(unboxer: Unboxer) throws {
@@ -32,7 +33,6 @@ class Pokemon: Unboxable {
         self.description = attributes["description"] as? String ?? ""
         self.imageUrl = attributes["image-url"] as? String ?? ""
     }
-    
 }
 
 

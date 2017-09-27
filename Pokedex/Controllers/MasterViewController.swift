@@ -69,7 +69,6 @@ class MasterViewController: UITableViewController {
         tableView.insertRows(at: [indexPath], with: .automatic)
     }
 
-    // MARK: - Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
@@ -82,7 +81,6 @@ class MasterViewController: UITableViewController {
         }
     }
 
-    // MARK: - Table View
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -95,12 +93,13 @@ class MasterViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath) as! PokemonCell
         let pokemon = objects[indexPath.row] as! Pokemon
         cell.nameLabel!.text = pokemon.name
+        cell.pokemonImageView.getImageForUrl(url: pokemon.imageUrl)
+        cell.pokemonImageView.setCircleMask()
         return cell
     }
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+        return false
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -108,7 +107,6 @@ class MasterViewController: UITableViewController {
             objects.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
     
@@ -116,13 +114,26 @@ class MasterViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    
-    func showMessage(message: String) {
-        Util.hideProgressDialog(view: self.view)
-        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-
 }
+
+extension UIImageView {
+    
+    public func getImageForUrl(url: String) {
+        PokemonService().getAPIImage(imageUrl: url, success: { (image) in
+            self.image = image
+        }) { (error) in
+            print(error)
+        }
+    }
+    
+    public func setCircleMask() {
+        self.layer.borderWidth = 1
+        self.layer.masksToBounds = false
+        self.layer.borderColor = UIColor.black.cgColor
+        self.layer.cornerRadius = self.frame.height/2
+        self.clipsToBounds = true
+    }
+}
+
+
 

@@ -11,12 +11,15 @@ import UIKit
 
 class AuthenticationViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet var emailTextField: UITextField!
-    @IBOutlet var passwordTextField: UITextField!
-    @IBOutlet var loginButton: UIButton!
+    @IBOutlet weak var scrollHeight: NSLayoutConstraint!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var email: UITextField!
+    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
     
     override func loadView() {
         super.loadView()
+        self.hideKeyboardWhenTappedAround()
         loginButton.backgroundColor = Util.basicBlueColor()
     }
     
@@ -25,12 +28,19 @@ class AuthenticationViewController: UIViewController, UITextFieldDelegate {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        email.delegate = self;
+        password.delegate = self;
+        performSignIn(email: "irisc@gmail.com", password: "87654321")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-        emailTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
-        self.signIn(email: self.emailTextField.text!, password: self.passwordTextField.text!)
+        email.resignFirstResponder()
+        password.resignFirstResponder()
+        self.signIn(email: self.email.text!, password: self.password.text!)
     }
     
     func signIn(email: String, password: String) {
@@ -60,32 +70,22 @@ class AuthenticationViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func showMessage(message: String) {
-        Util.hideProgressDialog(view: self.view)
-        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
-            }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if (textField.text == "")
+        {
+            textField.text = getDefaultTextFor(textField: textField)
         }
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
-            }
-        }
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        performSignIn(email: emailTextField.text!, password: passwordTextField.text!)
-        return true
+    }
+    
+    func getDefaultTextFor(textField: UITextField) -> String {
+        switch textField {
+        case email:
+            return "Email"
+        case password:
+            return "Password"
+        default:
+            return ""
+        }
     }
 }

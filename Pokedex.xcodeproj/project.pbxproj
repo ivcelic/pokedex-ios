@@ -14,6 +14,7 @@
 		04248A061F7695CE00053F25 /* PokedexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04248A051F7695CE00053F25 /* PokedexTests.swift */; };
 		04248A111F7695CE00053F25 /* PokedexUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04248A101F7695CE00053F25 /* PokedexUITests.swift */; };
 		049B10221F79888A00061AB1 /* AddPokemonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049B10211F79888A00061AB1 /* AddPokemonViewController.swift */; };
+		049B10261F7AA12800061AB1 /* UIViewController+Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049B10251F7AA12800061AB1 /* UIViewController+Keyboard.swift */; };
 		04A24D121F790058004B1602 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A24D111F790058004B1602 /* AuthenticationViewController.swift */; };
 		04A9753D1F784D9200C06998 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A9753C1F784D9200C06998 /* Pokemon.swift */; };
 		04A9756E1F78858C00C06998 /* add-image-button.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 04A9756A1F78858C00C06998 /* add-image-button.pdf */; };
@@ -69,6 +70,7 @@
 		04248A101F7695CE00053F25 /* PokedexUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexUITests.swift; sourceTree = "<group>"; };
 		04248A121F7695CE00053F25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		049B10211F79888A00061AB1 /* AddPokemonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPokemonViewController.swift; sourceTree = "<group>"; };
+		049B10251F7AA12800061AB1 /* UIViewController+Keyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Keyboard.swift"; sourceTree = "<group>"; };
 		04A24D111F790058004B1602 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		04A9753C1F784D9200C06998 /* Pokemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		04A9756A1F78858C00C06998 /* add-image-button.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "add-image-button.pdf"; sourceTree = "<group>"; };
@@ -185,8 +187,8 @@
 		04248A241F76AB6800053F25 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				04AB22191F76B48E0027E1CF /* AuthenticationService.swift */,
 				04AB221F1F76C5ED0027E1CF /* BaseService.swift */,
+				04AB22191F76B48E0027E1CF /* AuthenticationService.swift */,
 				04AB22231F784AFB0027E1CF /* PokemonService.swift */,
 			);
 			path = Services;
@@ -210,6 +212,7 @@
 				042489F01F7695CE00053F25 /* MasterViewController.swift */,
 				042489F21F7695CE00053F25 /* DetailViewController.swift */,
 				049B10211F79888A00061AB1 /* AddPokemonViewController.swift */,
+				049B10271F7AA16100061AB1 /* Extensions */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -256,6 +259,14 @@
 				042489EE1F7695CE00053F25 /* AppDelegate.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		049B10271F7AA16100061AB1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				049B10251F7AA12800061AB1 /* UIViewController+Keyboard.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		04A975721F78859900C06998 /* Icons */ = {
@@ -609,6 +620,7 @@
 				04AB221A1F76B48E0027E1CF /* AuthenticationService.swift in Sources */,
 				04AB22201F76C5ED0027E1CF /* BaseService.swift in Sources */,
 				04AB221E1F76B89E0027E1CF /* Util.swift in Sources */,
+				049B10261F7AA12800061AB1 /* UIViewController+Keyboard.swift in Sources */,
 				04A9753D1F784D9200C06998 /* Pokemon.swift in Sources */,
 				042489F11F7695CE00053F25 /* MasterViewController.swift in Sources */,
 				042489EF1F7695CE00053F25 /* AppDelegate.swift in Sources */,

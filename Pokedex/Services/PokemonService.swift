@@ -48,11 +48,11 @@ class PokemonService: BaseService {
         }
     }
 
-    func saveNewPokemon(name: String, height: Int, weight: Int, gender: Int, type: String, description: String, imageUrl: String, success: @escaping ((_ pokemon: Pokemon?) -> Void), failure:@escaping ((_ errorMessage: String) -> Void)){
+    func saveNewPokemon(name: String, height: Int, weight: Int, gender: Int, type: String, description: String, image: UIImage, success: @escaping ((_ pokemon: Pokemon?) -> Void), failure:@escaping ((_ errorMessage: String) -> Void)){
         let header = AuthenticationService.initAuthHeader()
         var dict: [String: AnyObject] = [:]
         var params: [String: AnyObject] = [:]
-        let attributes = [ "name":name, "height": height, "weight":weight, "gender-id":gender, "type":type, "description":description, "image-url":imageUrl] as [String : Any]
+        let attributes = [ "name":name, "height": height, "weight":weight, "gender-id":gender, "type":type, "description":description, "image-url":"aaaa"] as [String : Any]
         params["attributes"] = attributes as AnyObject
         dict["data"] = params as AnyObject
         let baseUrl = Util.readFromPlist(key:kBaseAPIURL)
@@ -67,7 +67,12 @@ class PokemonService: BaseService {
                         do{
                             if(response.response?.statusCode == 201) {
                                 let pokemon: Pokemon = try unbox(dictionary: data as! UnboxableDictionary, atKey: "data")
-                                success(pokemon)
+                                self.saveAPIImage(image: image, pokemonId: pokemon.pokemonId, success: { (imageUrl) in
+                                    pokemon.imageUrl = imageUrl!
+                                    success(pokemon)
+                                }, failure: { (error) in
+                                    failure(BaseService.kAPIErrorMessage)
+                                })
                             } else {
                                 failure(BaseService.kAPIErrorMessage)
                             }
@@ -76,6 +81,32 @@ class PokemonService: BaseService {
                         }
                     }
             }
+        }
+    }
+    
+    func getAPIImage(imageUrl: String, success: @escaping ((_ image: UIImage?) -> Void), failure:@escaping ((_ errorMessage: String) -> Void)){
+        if imageUrl.characters.count != 0 {
+        DataRequest.addAcceptableImageContentTypes(["image/jpg"])
+        DataRequest.addAcceptableImageContentTypes(["image/png"])
+        let baseUrl = Util.readFromPlist(key:kBaseAPIURL)
+        if baseUrl != nil {
+            let url: URLConvertible = "https://pokeapi.infinum.co" + imageUrl
+            Alamofire.request(url).responseImage { response in
+                if let image = response.result.value {
+                    success(image)
+                }
+            }
+        }
+        }
+    }
+    
+    func saveAPIImage(image: UIImage, pokemonId: Int, success: @escaping ((_ imageUrl: String?) -> Void), failure:@escaping ((_ errorMessage: String) -> Void)){
+        let header = AuthenticationService.initAuthHeader()
+        let imageData = UIImagePNGRepresentation(image)!
+        let imageUrl = "/uploads/store/pokemon/" + String(pokemonId) + "/image/pokemonImage.png"
+        let url: URLConvertible = "https://pokeapi.infinum.co" + imageUrl
+        Alamofire.upload(imageData, to: url, headers: header).responseJSON { response in
+            success(imageUrl)
         }
     }
     
