@@ -33,22 +33,25 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     @IBOutlet weak var pokemonDetailsTable: UITableView!
     var pokemon: Pokemon!
-    var pokemonComments: Array<Any>!
-
+    var pokemonComments = [Comment]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadComments()
+        
         pokemonDetailsTable.delegate = self
         pokemonDetailsTable.dataSource = self
-        loadComments()
     }
     
     func loadComments() {
+        Util.showProgressDialog(view: self.view)
         let id = String(pokemon.pokemonId)
-    PokemonService().getCommentsForPokemonId(id: id, success: { (comments) in
-        self.pokemonComments = comments as! Array<Any>
-    }) { (error) in
-        print(error)
+        PokemonService().getCommentsForPokemonId(id: id, success: { (comments) in
+            self.pokemonComments = comments
+            self.pokemonDetailsTable.reloadData()
+            Util.hideProgressDialog(view: self.view)
+        }) { (error) in
+            self.showMessage(message: error)
         }
     }
 
@@ -61,7 +64,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 3 + pokemonComments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -70,11 +73,15 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonImageCell", for: indexPath) as! PokemonImageCell
             if(pokemon.imageUrl.characters.count > 0) {
-                PokemonService().getAPIImage(imageUrl: pokemon.imageUrl, success: { (image) in
+                if(pokemon.image == nil) {
+                PokemonService().getAPIImage(pokemon: pokemon, success: { (image) in
                     cell.pokemonImage.image = image
                 }, failure: { (error) in
                     print(error)
                 })
+                } else {
+                    cell.pokemonImage.image = pokemon.image
+                }
             }
             tableCell = cell
         case 1:
@@ -91,7 +98,9 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             tableCell = cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCommentCell", for: indexPath) as! PokemonCommentCell
-//            cell.comment.text = pokemonComments[indexPath.row-2]
+            let comment = pokemonComments[indexPath.row-2] as Comment
+            cell.author.text = comment.authorId
+            cell.comment.text = comment.comment
             tableCell = cell
         }
         

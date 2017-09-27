@@ -93,8 +93,15 @@ class MasterViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PokemonCell", for: indexPath) as! PokemonCell
         let pokemon = objects[indexPath.row] as! Pokemon
         cell.nameLabel!.text = pokemon.name
-        cell.pokemonImageView.getImageForUrl(url: pokemon.imageUrl)
-        cell.pokemonImageView.setCircleMask()
+        cell.tag = indexPath.row
+        if(indexPath.row == cell.tag) {
+            if(pokemon.image == nil) {
+                cell.pokemonImageView.setImageForPokemon(pokemon: pokemon)
+            } else {
+                cell.pokemonImageView.image = pokemon.image
+            }
+            cell.pokemonImageView.setCircleMask()
+        }
         return cell
     }
 
@@ -118,9 +125,9 @@ class MasterViewController: UITableViewController {
 
 extension UIImageView {
     
-    public func getImageForUrl(url: String) {
-        PokemonService().getAPIImage(imageUrl: url, success: { (image) in
-            self.image = image
+    func setImageForPokemon(pokemon: Pokemon) {
+        PokemonService().getAPIImage(pokemon: pokemon, success: { (image) in
+            pokemon.image = image
         }) { (error) in
             print(error)
         }

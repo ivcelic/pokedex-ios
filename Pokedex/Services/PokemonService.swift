@@ -10,6 +10,19 @@ import Foundation
 import Alamofire
 import Unbox
 
+struct Comment {
+    var authorId: String = ""
+    var authorName: String = ""
+    var comment: String = ""
+    var attributes = [String : AnyObject]()
+}
+
+extension Comment: Unboxable {
+    init(unboxer: Unboxer) throws {
+        self.comment = try unboxer.unbox(key: "attributes.content")
+        self.authorId = try unboxer.unbox(keyPath: "relationships.author.data.id")
+    }
+}
 class PokemonService: BaseService {
     
     let kBaseAPIURL: String = "APIURL"
@@ -84,15 +97,16 @@ class PokemonService: BaseService {
         }
     }
     
-    func getAPIImage(imageUrl: String, success: @escaping ((_ image: UIImage?) -> Void), failure:@escaping ((_ errorMessage: String) -> Void)){
-        if imageUrl.characters.count != 0 {
+    func getAPIImage(pokemon: Pokemon, success: @escaping ((_ image: UIImage?) -> Void), failure:@escaping ((_ errorMessage: String) -> Void)){
+        if pokemon.imageUrl.characters.count != 0 {
         DataRequest.addAcceptableImageContentTypes(["image/jpg"])
         DataRequest.addAcceptableImageContentTypes(["image/png"])
         let baseUrl = Util.readFromPlist(key:kBaseAPIURL)
         if baseUrl != nil {
-            let url: URLConvertible = "https://pokeapi.infinum.co" + imageUrl
+            let url: URLConvertible = "https://pokeapi.infinum.co" + pokemon.imageUrl
             Alamofire.request(url).responseImage { response in
                 if let image = response.result.value {
+                    pokemon.image = image
                     success(image)
                 }
             }
@@ -110,7 +124,7 @@ class PokemonService: BaseService {
         }
     }
     
-    func getCommentsForPokemonId(id: String, success: @escaping ((_ comments: NSArray) -> Void), failure:@escaping ((_ errorMessage: String) -> Void)){
+    func getCommentsForPokemonId(id: String, success: @escaping ((_ comments: Array<Comment>) -> Void), failure:@escaping ((_ errorMessage: String) -> Void)){
         let header = AuthenticationService.initAuthHeader()
         let baseUrl = Util.readFromPlist(key:kBaseAPIURL)
         if baseUrl != nil {
@@ -122,13 +136,20 @@ class PokemonService: BaseService {
                         failure(error.localizedDescription)
                     case .success(let data):
                         if(response.response?.statusCode == 200) {
+                            var pokemonComments: [Comment] = []
                             let parsedData = data as! NSDictionary
                             let commentsArray = parsedData.object(forKey: "data") as! NSArray
-                            print(data)
-                            success(commentsArray)
+                            for comment in commentsArray {
+                                do {
+                                    let pokemonComment: Comment = try unbox(dictionary: comment as! UnboxableDictionary, atKey: "data")
+                                    pokemonComments.append(pokemonComment)
+                                } catch {
+                                    failure(BaseService.kDefaultErrorMessage)
+                                }
+                            }
+                            success(pokemonComments)
                         } else {
                             failure(BaseService.kAPIErrorMessage)
-                            print(data)
                         }
                     }
             }
