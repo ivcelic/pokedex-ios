@@ -25,7 +25,7 @@ class AddPokemonViewController: UIViewController, UITextFieldDelegate, UITextVie
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        setTextFieldsDelegates()
+        setDelegates()
     }
     
     override func didReceiveMemoryWarning() {
@@ -36,7 +36,8 @@ class AddPokemonViewController: UIViewController, UITextFieldDelegate, UITextVie
         NotificationCenter.default.removeObserver(self)
     }
     
-    func setTextFieldsDelegates() {
+    func setDelegates() {
+        imagePicker.delegate = self
         pokemonDescription.delegate = self
         name.delegate = self
         height.delegate = self
@@ -50,7 +51,6 @@ class AddPokemonViewController: UIViewController, UITextFieldDelegate, UITextVie
     
     func addPokemon(name: String, height: String, weight: String, type: String, description: String, image: UIImage) {
         Util.showProgressDialog(view: self.view)
-        //gender is male
         PokemonService().saveNewPokemon(name: name, height:Int(height)!, weight:Int(weight)!, gender: 0, type: type, description: description, image: image, success: { (pokemon) in
             Util.hideProgressDialog(view: self.view)
             self.returnToMainScreen()
