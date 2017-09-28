@@ -38,7 +38,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         loadComments()
-        
+        addTitle(title: pokemon.name)
         pokemonDetailsTable.delegate = self
         pokemonDetailsTable.dataSource = self
     }
@@ -122,7 +122,14 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return false
     }
+}
 
-
+extension UIViewController {
+    
+    func addTitle(title: String) {
+        if(self.navigationController != nil) {
+            self.navigationItem.title = title
+        }
+    }
 }
 
