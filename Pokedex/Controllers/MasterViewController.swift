@@ -24,6 +24,7 @@ class MasterViewController: UITableViewController {
         super.viewDidLoad()
         setNavigationBarApperance()
         loadTableData()
+        addRefreshControl()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -32,6 +33,12 @@ class MasterViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func addRefreshControl() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
+        self.tableView.refreshControl = refreshControl
     }
     
     @IBAction func logout(_ sender: Any) {
@@ -124,7 +131,16 @@ class MasterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
+    
+    func refreshTable(refreshControl: UIRefreshControl) {
+        PokemonService().getAllPokemons(success: { (pokemons) in
+            self.objects = pokemons
+            self.tableView.reloadData()
+            refreshControl.endRefreshing()
+        }) { (error) in
+            self.showMessage(message: error)
+        }
+    }
 }
 
 extension UIImageView {
